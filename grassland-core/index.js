@@ -17,9 +17,10 @@ const readIssue = () => {
   return axios(
     "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100"
   ).then((res) => {
+    fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
+
     res.data.forEach((item) => {
       fs.writeFileSync(`${base}${item.title}.md`, item.body);
-      console.log(item.title);
       sidebar.push({
         text: item.title,
         link: `/${item.title}`,
@@ -53,8 +54,6 @@ const writeConfig = async () => {
     },
     base: "",
   };
-
-  console.log(config);
 
   fs.writeFileSync(
     `${base}.vitepress/config.js`,
