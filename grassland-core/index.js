@@ -7,23 +7,26 @@ const sidebar = [
   //   text: "互联网常用名词",
   //   link: "/互联网常用名词",
   // },
-  // {
-  //   text: "有趣的题目",
-  //   link: "/有趣的题目",
-  // },
 ];
 
 const readIssue = () => {
   return axios(
-    "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100"
+    "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100",
+    {
+      params: {
+        state: "all",
+        per_page: 100,
+        labels: ["published"].join(","),
+      },
+    }
   ).then((res) => {
     fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
 
     res.data.forEach((item) => {
-      fs.writeFileSync(`${base}${item.title}.md`, item.body);
+      fs.writeFileSync(`${base}published/${item.title}.md`, item.body);
       sidebar.push({
         text: item.title,
-        link: `/${item.title}`,
+        link: `/published/${item.title}`,
       });
     });
   });

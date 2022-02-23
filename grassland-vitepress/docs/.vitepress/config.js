@@ -13,15 +13,7 @@ module.exports = {
 		"sidebar": [
 			{
 				"text": "互联网常用名词",
-				"link": "/互联网常用名词"
-			},
-			{
-				"text": "有趣的题目",
-				"link": "/有趣的题目"
-			},
-			{
-				"text": "Leetcode Top 100",
-				"link": "/Leetcode Top 100"
+				"link": "/published/互联网常用名词"
 			}
 		]
 	},
