@@ -7,6 +7,6 @@ axios(
   console.log(res);
   res.data.forEach((item) => {
     console.log(item);
-    fs.writeFileSync(`${item.title}.md`, item.body);
+    fs.writeFileSync(`../grassland-vitepress/docs/${item.title}.md`, item.body);
   });
 });
