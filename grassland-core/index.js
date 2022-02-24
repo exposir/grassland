@@ -11,22 +11,24 @@ const sidebar = [
 
 const readIssue = () => {
   return axios(
-    "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100",
+    "https://api.github.com/repos/vuejs/vuepress/issues?state=all&per_page=100",
     {
       params: {
         state: "all",
-        per_page: 100,
-        labels: ["published"].join(","),
+        per_page: 90,
       },
     }
   ).then((res) => {
     fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
 
     res.data.forEach((item) => {
-      fs.writeFileSync(`${base}published/${item.title}.md`, item.body);
+      const newTitle = item.title.split("/").join("");
+      console.log("title------", newTitle);
+
+      fs.writeFileSync(`${base}published/` + newTitle + `.md`, item.body);
       sidebar.push({
-        text: item.title,
-        link: `/published/${item.title}`,
+        text: newTitle,
+        link: `/published/${newTitle}`,
       });
     });
   });
@@ -63,8 +65,10 @@ const writeConfig = async () => {
   );
 };
 
-const my = {
-  my: writeConfig(),
-};
+writeConfig();
 
-export default my;
+// const my = {
+//   my: writeConfig(),
+// };
+
+// export default my;

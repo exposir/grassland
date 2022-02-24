@@ -1,0 +1,1 @@
+In the MD file, how to click the picture without enlarging it? Now it is the default click to zoom in？ Thanks
