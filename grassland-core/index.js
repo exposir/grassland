@@ -24,13 +24,17 @@ const readIssue = () => {
     res.data.forEach((item) => {
       let newTitle = item.title;
       if (newTitle.indexOf("/") >= 0) {
-        newTitle = newTitle.split("/").join("");
+        newTitle = newTitle.split("/").join(" ");
       }
       if (newTitle.indexOf("【") >= 0) {
-        newTitle = newTitle.split("【").join("");
+        newTitle = newTitle.split("【").join(" ");
       }
       if (newTitle.indexOf("】") >= 0) {
-        newTitle = newTitle.split("】").join("");
+        newTitle = newTitle.split("】").join(" ");
+      }
+
+      if (newTitle.indexOf(".") >= 0) {
+        newTitle = newTitle.split(".").join(" ");
       }
 
       console.log("title------", newTitle);
