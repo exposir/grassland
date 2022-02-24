@@ -1,8 +1,7 @@
 {
-  "name": "issue-core",
-  "version": "1.0.0",
+  "name": "grassland-core",
+  "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
     "start": "node index.js"
   },

@@ -34,7 +34,6 @@ const readIssue = () => {
 
 const writeConfig = async () => {
   await readIssue();
-
   const config = {
     title: "Exposir",
     description: "孟世博的博客",
@@ -64,4 +63,8 @@ const writeConfig = async () => {
   );
 };
 
-writeConfig();
+const my = {
+  my: writeConfig(),
+};
+
+export default my;
