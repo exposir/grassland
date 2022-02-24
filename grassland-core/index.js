@@ -41,8 +41,8 @@ const writeConfig = async () => {
     dest: "public",
     serviceWorker: false,
     themeConfig: {
-      repo: "exposir/grassland",
-      repoLabel: "Github",
+      // repo: "exposir/grassland",
+      // repoLabel: "Github",
       editLinks: true,
       docsDir: "docs",
       editLinkText: "编辑此页",
