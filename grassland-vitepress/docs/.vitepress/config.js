@@ -12,6 +12,10 @@ module.exports = {
 		"lastUpdated": "lastUpdate",
 		"sidebar": [
 			{
+				"text": "世界各国国徽",
+				"link": "/published/世界各国国徽"
+			},
+			{
 				"text": "互联网常用名词",
 				"link": "/published/互联网常用名词"
 			},
