@@ -11,21 +11,34 @@ const sidebar = [
 
 const readIssue = () => {
   return axios(
-    "https://api.github.com/repos/vuejs/vuepress/issues?state=all&per_page=100",
+    "https://api.github.com/repos/shfshanyue/Daily-Question/issues?state=all&per_page=100",
     {
       params: {
         state: "all",
-        per_page: 90,
+        per_page: 1000,
       },
     }
   ).then((res) => {
     fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
 
     res.data.forEach((item) => {
-      const newTitle = item.title.split("/").join("");
+      let newTitle = item.title;
+      if (newTitle.indexOf("/") >= 0) {
+        newTitle = newTitle.split("/").join("");
+      }
+      if (newTitle.indexOf("【") >= 0) {
+        newTitle = newTitle.split("【").join("");
+      }
+      if (newTitle.indexOf("】") >= 0) {
+        newTitle = newTitle.split("】").join("");
+      }
+
       console.log("title------", newTitle);
 
-      fs.writeFileSync(`${base}published/` + newTitle + `.md`, item.body);
+      fs.writeFileSync(
+        `${base}published/` + newTitle + `.md`,
+        item.body ? item.body : ""
+      );
       sidebar.push({
         text: newTitle,
         link: `/published/${newTitle}`,
