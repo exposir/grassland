@@ -1,2 +1,0 @@
-Update https://registry.npm.taobao.org to https://registry.npmmirror.com, For more info please refer to https://zhuanlan.zhihu.com/p/430580607. 
- This is an automated PR by @npmmirror (Which is a bot maintained by 8d6e8cefe5a7e3202364ec2c48db03fcc544218cf70100bf65d2ed2df5cc83da).

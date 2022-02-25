@@ -1,1 +1,0 @@
-我想将vuepress集成到qiankun微应用里（基于single-spa）,但是无法再vuepress服务的最后exports lifecicle。或者说qiankun获取不到vuepress暴露的生命周期函数。请问有没有大神帮忙解决下？

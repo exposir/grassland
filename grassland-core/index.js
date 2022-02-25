@@ -11,7 +11,7 @@ const sidebar = [
 
 const readIssue = () => {
   return axios(
-    "https://api.github.com/repos/shfshanyue/Daily-Question/issues?state=all&per_page=100",
+    "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100",
     {
       params: {
         state: "all",
@@ -63,8 +63,8 @@ const writeConfig = async () => {
       repoLabel: "Github",
       editLinks: true,
       docsDir: "docs",
-      editLinkText: "编辑此页",
-      lastUpdated: "lastUpdate",
+      // editLinkText: "编辑此页",
+      // lastUpdated: "lastUpdate",
       // nav: [
       //   {
       //     text: "Home",
