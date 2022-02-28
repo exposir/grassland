@@ -1,15 +1,17 @@
 {
   "name": "grassland-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "node index.js"
   },
   "devDependencies": {
     "typescript": "^4.5.5"
   },
   "dependencies": {
     "axios": "^0.26.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "grassland-core": "^0.0.2"
   }
 }

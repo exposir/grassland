@@ -19,6 +19,14 @@ fs@^0.0.1-security:
   resolved "https://registry.npmmirror.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
   integrity sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w==
 
+grassland-core@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/grassland-core/-/grassland-core-0.0.2.tgz#19147b66814212dc7786aed982fe5004e2fc73ef"
+  integrity sha512-ffDumEADbLkoko3N1S+rJbYdGm1RZMeuDQg7mMK/rMoHISDjWwxM/8MvovOuJKRx5yaOHrS3o3iAakErBYSL9Q==
+  dependencies:
+    axios "^0.26.0"
+    fs "^0.0.1-security"
+
 typescript@^4.5.5:
   version "4.5.5"
   resolved "https://registry.npmmirror.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
