@@ -10,6 +10,10 @@ module.exports = {
 		"docsDir": "docs",
 		"sidebar": [
 			{
+				"text": "Kamil Galeev",
+				"link": "/published/Kamil Galeev"
+			},
+			{
 				"text": "世界各国国徽",
 				"link": "/published/世界各国国徽"
 			},
