@@ -15,13 +15,30 @@ const mkdirFolder = (dir) => {
   }
 };
 
+const ghToken = process.env.GITHUB_TOKEN;
+
+const repo =
+  process.env.REPO ||
+  `${process.env.VERCEL_GIT_REPO_OWNER}/${process.env.VERCEL_GIT_REPO_SLUG}`;
+
+// const [ghUserName, repoSlug] = repo.split("/");
+
+const authHeaders = ghToken
+  ? {
+      Authorization: `bearer ${ghToken}`,
+    }
+  : {};
+
 const readIssue = () => {
   return axios(
-    "https://api.github.com/repos/exposir/grassland/issues?state=all&per_page=100",
+    `https://api.github.com/repos/${repo}/issues?state=all&per_page=100`,
     {
       params: {
         state: "all",
         per_page: 10000,
+      },
+      headers: {
+        ...authHeaders,
       },
     }
   ).then((res) => {

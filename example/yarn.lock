@@ -433,10 +433,10 @@ grassland-core@^0.0.2:
     axios "^0.26.0"
     fs "^0.0.1-security"
 
-grassland-core@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/grassland-core/-/grassland-core-0.0.3.tgz#7d17e0f4afc5c846824104f2b17d6fd6a40be502"
-  integrity sha512-KGefDXxX3F8X+FgT3SOEOGxMypca1lk9VlY7l8gaDuYcxIn7AXWwXhcqQN+hwkVt0MtQWv1ZN9ho8wkbsx9r2A==
+grassland-core@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/grassland-core/-/grassland-core-0.0.4.tgz#50ba5f147373e00102d88d67238fda1f9d3ea663"
+  integrity sha512-nQU+Un051m5ZtEiAjBg5j76HuJrp5YUNhBELneW2mkKHaOXAB3GOFEYeGgKnAUvse0JZzXgvlzTfheVu4tjVTQ==
   dependencies:
     axios "^0.26.0"
     fs "^0.0.1-security"
