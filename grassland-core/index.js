@@ -1,5 +1,11 @@
 const fs = require("fs");
+// var __importDefault =
+//   (this && this.__importDefault) ||å
+//   function (mod) {
+//     return mod && mod.__esModule ? mod : { default: mod };
+//   };
 const axios = require("axios");
+// const axios = __importDefault(require("axios"));
 const base = "./docs/";
 const sidebar = [];
 
