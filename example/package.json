@@ -7,8 +7,8 @@
     "vitepress": "^0.22.3"
   },
   "scripts": {
-    "start": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "start": "node index.js && vitepress dev docs",
+    "build": "node index.js && vitepress build docs",
+    "serve": "node index.js && vitepress serve docs"
   }
 }

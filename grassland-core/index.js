@@ -1,13 +1,19 @@
 const fs = require("fs");
 const axios = require("axios");
-const base = "../grassland-vitepress/docs/";
+const base = "./docs/";
+const sidebar = [];
 
-const sidebar = [
-  // {
-  //   text: "互联网常用名词",
-  //   link: "/互联网常用名词",
-  // },
-];
+const mkdirFolder = (dir) => {
+  let paths = dir.split("/");
+  for (let i = 1; i < paths.length; i++) {
+    let newPath = paths.slice(0, i).join("/");
+    try {
+      fs.accessSync(newPath, fs.constants.R_OK);
+    } catch (e) {
+      fs.mkdirSync(newPath);
+    }
+  }
+};
 
 const readIssue = () => {
   return axios(
@@ -19,7 +25,16 @@ const readIssue = () => {
       },
     }
   ).then((res) => {
-    fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
+    const folderList = [
+      // `${base}res/`,
+      `${base}published/`,
+      `${base}.vitepress/`,
+    ];
+    folderList.forEach((item) => {
+      mkdirFolder(item);
+    });
+
+    // fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
 
     res.data.forEach((item) => {
       let newTitle = item.title;
@@ -82,10 +97,4 @@ const writeConfig = async () => {
   );
 };
 
-writeConfig();
-
-// const my = {
-//   my: writeConfig(),
-// };
-
-// export default my;
+exports.writeConfig = writeConfig;
