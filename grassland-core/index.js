@@ -1,5 +1,5 @@
 const fs = require("fs");
-var axios = require("axios");
+const axios = require("axios");
 const base = "./docs/";
 const sidebar = [];
 

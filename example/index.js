@@ -1,3 +1,3 @@
-const { writeConfig } = require("../grassland-core/index.js");
+const { writeConfig } = require("grassland-core");
 
 writeConfig();
