@@ -12,6 +12,6 @@
     "serve": "node index.js && vitepress serve docs"
   },
   "dependencies": {
-    "grassland-core": "^0.0.13"
+    "grassland-core": "^0.0.14"
   }
 }
