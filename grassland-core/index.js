@@ -29,7 +29,7 @@ const mkdirFolder = (dir) => {
   }
 };
 
-const readIssue = () => {
+const writeConfig = () => {
   return axios(
     `https://api.github.com/repos/${repo}/issues?state=all&per_page=100`,
     {
@@ -121,4 +121,4 @@ const readIssue = () => {
     });
 };
 
-exports.readIssue = readIssue;
+exports.writeConfig = writeConfig;
