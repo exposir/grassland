@@ -79,7 +79,7 @@ const writeConfig = () => {
           });
 
           const config = {
-            title: "grassland",
+            title: "Grassland",
             description: "孟世博的博客",
             dest: "public",
             serviceWorker: false,
