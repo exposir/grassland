@@ -42,55 +42,60 @@ const readIssue = () => {
         ...authHeaders,
       },
     }
-  ).then((res) => {
-    const folderList = [
-      // `${base}res/`,
-      `${base}published/`,
-      `${base}.vitepress/`,
-    ];
-    folderList.forEach((item) => {
-      mkdirFolder(item);
-    });
+  )
+    .then((res) => {
+      const add = () => {
+        const folderList = [`${base}published/`, `${base}.vitepress/`];
+        folderList.forEach((item) => {
+          mkdirFolder(item);
+        });
 
-    res.data.forEach((item) => {
-      let newTitle = item.title;
-      if (newTitle.indexOf("/") >= 0) {
-        newTitle = newTitle.split("/").join(" ");
-      }
-      if (newTitle.indexOf("【") >= 0) {
-        newTitle = newTitle.split("【").join(" ");
-      }
-      if (newTitle.indexOf("】") >= 0) {
-        newTitle = newTitle.split("】").join(" ");
-      }
+        res.data.forEach((item) => {
+          let newTitle = item.title;
+          if (newTitle.indexOf("/") >= 0) {
+            newTitle = newTitle.split("/").join(" ");
+          }
+          if (newTitle.indexOf("【") >= 0) {
+            newTitle = newTitle.split("【").join(" ");
+          }
+          if (newTitle.indexOf("】") >= 0) {
+            newTitle = newTitle.split("】").join(" ");
+          }
 
-      if (newTitle.indexOf(".") >= 0) {
-        newTitle = newTitle.split(".").join(" ");
-      }
+          if (newTitle.indexOf(".") >= 0) {
+            newTitle = newTitle.split(".").join(" ");
+          }
 
-      console.log("title------", newTitle);
+          console.log("title------", newTitle);
 
-      const writeFile = () => {
-        fs.writeFileSync(
-          `${base}published/` + newTitle + `.md`,
-          item.body ? item.body : ""
-        );
-        sidebar.push({
-          text: newTitle,
-          link: `/published/${newTitle}`,
+          const writeFile = () => {
+            fs.writeFileSync(
+              `${base}published/` + newTitle + `.md`,
+              item.body ? item.body : ""
+            );
+            sidebar.push({
+              text: newTitle,
+              link: `/published/${newTitle}`,
+            });
+          };
+          writeFile();
+
+          // 删除之前文件夹
         });
       };
 
-      // 删除之前文件夹
       rimraf(base, function async(err) {
-        return err ? console.log(err) : writeFile();
+        return err ? console.log(err) : add();
       });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
 };
 
 const writeConfig = async () => {
   await readIssue();
+
   const config = {
     title: "Exposir",
     description: "孟世博的博客",
