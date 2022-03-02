@@ -77,44 +77,44 @@ const writeConfig = () => {
             text: newTitle,
             link: `/published/${newTitle}`,
           });
+
+          const config = {
+            title: "Exposir",
+            description: "孟世博的博客",
+            dest: "public",
+            serviceWorker: false,
+            themeConfig: {
+              repo: "exposir/grassland",
+              repoLabel: "Github",
+              editLinks: true,
+              docsDir: "docs",
+              // editLinkText: "编辑此页",
+              // lastUpdated: "lastUpdate",
+              // nav: [
+              //   {
+              //     text: "Home",
+              //     link: "/",
+              //   },
+              // ],
+              sidebar: sidebar,
+            },
+            base: "",
+          };
+
+          fs.writeFileSync(
+            `${base}.vitepress/config.js`,
+            "module.exports = " + JSON.stringify(config, null, "\t")
+          );
+          console.log(
+            `${base}.vitepress/config.js`,
+            "module.exports = " + JSON.stringify(config, null, "\t")
+          );
         });
       };
 
       rimraf(base, function async(err) {
         return err ? console.log(err) : add();
       });
-
-      const config = {
-        title: "Exposir",
-        description: "孟世博的博客",
-        dest: "public",
-        serviceWorker: false,
-        themeConfig: {
-          repo: "exposir/grassland",
-          repoLabel: "Github",
-          editLinks: true,
-          docsDir: "docs",
-          // editLinkText: "编辑此页",
-          // lastUpdated: "lastUpdate",
-          // nav: [
-          //   {
-          //     text: "Home",
-          //     link: "/",
-          //   },
-          // ],
-          sidebar: sidebar,
-        },
-        base: "",
-      };
-
-      fs.writeFileSync(
-        `${base}.vitepress/config.js`,
-        "module.exports = " + JSON.stringify(config, null, "\t")
-      );
-      console.log(
-        `${base}.vitepress/config.js`,
-        "module.exports = " + JSON.stringify(config, null, "\t")
-      );
     })
     .catch((err) => {
       console.log(err);
