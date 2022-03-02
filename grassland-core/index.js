@@ -34,7 +34,7 @@ const writeConfig = () => {
     `https://api.github.com/repos/${repo}/issues?state=all&per_page=100`,
     {
       params: {
-        state: "all",
+        state: "open",
         per_page: 10000,
       },
       headers: {
