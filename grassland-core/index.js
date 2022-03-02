@@ -3,7 +3,6 @@ const axios = require("axios");
 const rimraf = require("rimraf");
 const base = "./docs/";
 const sidebar = [];
-
 const ghToken = process.env.GITHUB_TOKEN;
 const repo =
   process.env.REPO ||
@@ -84,46 +83,42 @@ const readIssue = () => {
       rimraf(base, function async(err) {
         return err ? console.log(err) : add();
       });
+
+      const config = {
+        title: "Exposir",
+        description: "孟世博的博客",
+        dest: "public",
+        serviceWorker: false,
+        themeConfig: {
+          repo: "exposir/grassland",
+          repoLabel: "Github",
+          editLinks: true,
+          docsDir: "docs",
+          // editLinkText: "编辑此页",
+          // lastUpdated: "lastUpdate",
+          // nav: [
+          //   {
+          //     text: "Home",
+          //     link: "/",
+          //   },
+          // ],
+          sidebar: sidebar,
+        },
+        base: "",
+      };
+
+      fs.writeFileSync(
+        `${base}.vitepress/config.js`,
+        "module.exports = " + JSON.stringify(config, null, "\t")
+      );
+      console.log(
+        `${base}.vitepress/config.js`,
+        "module.exports = " + JSON.stringify(config, null, "\t")
+      );
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-const writeConfig = async () => {
-  await readIssue();
-
-  const config = {
-    title: "Exposir",
-    description: "孟世博的博客",
-    dest: "public",
-    serviceWorker: false,
-    themeConfig: {
-      repo: "exposir/grassland",
-      repoLabel: "Github",
-      editLinks: true,
-      docsDir: "docs",
-      // editLinkText: "编辑此页",
-      // lastUpdated: "lastUpdate",
-      // nav: [
-      //   {
-      //     text: "Home",
-      //     link: "/",
-      //   },
-      // ],
-      sidebar: sidebar,
-    },
-    base: "",
-  };
-
-  fs.writeFileSync(
-    `${base}.vitepress/config.js`,
-    "module.exports = " + JSON.stringify(config, null, "\t")
-  );
-  console.log(
-    `${base}.vitepress/config.js`,
-    "module.exports = " + JSON.stringify(config, null, "\t")
-  );
-};
-
-exports.writeConfig = writeConfig;
+exports.readIssue = readIssue;
