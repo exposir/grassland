@@ -70,19 +70,14 @@ const readIssue = () => {
 
           console.log("title------", newTitle);
 
-          const writeFile = () => {
-            fs.writeFileSync(
-              `${base}published/` + newTitle + `.md`,
-              item.body ? item.body : ""
-            );
-            sidebar.push({
-              text: newTitle,
-              link: `/published/${newTitle}`,
-            });
-          };
-          writeFile();
-
-          // 删除之前文件夹
+          fs.writeFileSync(
+            `${base}published/` + newTitle + `.md`,
+            item.body ? item.body : ""
+          );
+          sidebar.push({
+            text: newTitle,
+            link: `/published/${newTitle}`,
+          });
         });
       };
 
