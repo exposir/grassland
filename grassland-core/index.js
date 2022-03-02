@@ -46,7 +46,7 @@ const readIssue = () => {
     .then((res) => {
       const add = () => {
         mkdirFolder(base);
-        fs.writeFileSync(`${base}published/index.md`, "readme");
+        fs.writeFileSync(`${base}index.md`, "readme");
         const folderList = [`${base}published/`, `${base}.vitepress/`];
         folderList.forEach((item) => {
           mkdirFolder(item);
