@@ -120,6 +120,10 @@ const writeConfig = async () => {
     `${base}.vitepress/config.js`,
     "module.exports = " + JSON.stringify(config, null, "\t")
   );
+  console.log(
+    `${base}.vitepress/config.js`,
+    "module.exports = " + JSON.stringify(config, null, "\t")
+  );
 };
 
 exports.writeConfig = writeConfig;
