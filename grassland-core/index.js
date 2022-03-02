@@ -50,6 +50,8 @@ const readIssue = () => {
           mkdirFolder(item);
         });
 
+        fs.writeFileSync(`${base}published/index.md`, "readme");
+
         res.data.forEach((item) => {
           let newTitle = item.title;
           if (newTitle.indexOf("/") >= 0) {
