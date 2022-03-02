@@ -15,6 +15,16 @@ const mkdirFolder = (dir) => {
   }
 };
 
+const removeFolder = (dir) => {
+  let files = fs.readdirSync(dir);
+  for (var i = 0; i < files.length; i++) {
+    let newPath = path.join(dir, files[i]);
+    let stat = fs.statSync(newPath);
+    stat.isDirectory() ? removeFolder(newPath) : fs.unlinkSync(newPath);
+  }
+  fs.rmdirSync(dir); //如果文件夹是空的，就将自己删除掉
+};
+
 const ghToken = process.env.GITHUB_TOKEN;
 
 const repo =
@@ -51,8 +61,6 @@ const readIssue = () => {
       mkdirFolder(item);
     });
 
-    // fs.writeFileSync(`${base}res.js`, JSON.stringify(res.data, null, "\t"));
-
     res.data.forEach((item) => {
       let newTitle = item.title;
       if (newTitle.indexOf("/") >= 0) {
@@ -70,6 +78,7 @@ const readIssue = () => {
       }
 
       console.log("title------", newTitle);
+      removeFolder(`${base}`);
 
       fs.writeFileSync(
         `${base}published/` + newTitle + `.md`,
