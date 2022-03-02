@@ -1,7 +1,22 @@
 const fs = require("fs");
 const axios = require("axios");
+const rimraf = require("rimraf");
 const base = "./docs/";
 const sidebar = [];
+
+const ghToken = process.env.GITHUB_TOKEN;
+const repo =
+  process.env.REPO ||
+  `${process.env.VERCEL_GIT_REPO_OWNER}/${process.env.VERCEL_GIT_REPO_SLUG}`;
+
+const [ghUserName, repoSlug] = repo.split("/");
+
+console.log(`ghUserName---${ghUserName}`, `repoSlug---${repoSlug}`);
+
+const authorization = {
+  Authorization: `bearer ${ghToken}`,
+};
+const authHeaders = ghToken ? { ...authorization } : {};
 
 const mkdirFolder = (dir) => {
   let paths = dir.split("/");
@@ -14,30 +29,6 @@ const mkdirFolder = (dir) => {
     }
   }
 };
-
-const removeFolder = (dir) => {
-  let files = fs.readdirSync(dir);
-  for (var i = 0; i < files.length; i++) {
-    let newPath = path.join(dir, files[i]);
-    let stat = fs.statSync(newPath);
-    stat.isDirectory() ? removeFolder(newPath) : fs.unlinkSync(newPath);
-  }
-  fs.rmdirSync(dir); //如果文件夹是空的，就将自己删除掉
-};
-
-const ghToken = process.env.GITHUB_TOKEN;
-
-const repo =
-  process.env.REPO ||
-  `${process.env.VERCEL_GIT_REPO_OWNER}/${process.env.VERCEL_GIT_REPO_SLUG}`;
-
-// const [ghUserName, repoSlug] = repo.split("/");
-
-const authHeaders = ghToken
-  ? {
-      Authorization: `bearer ${ghToken}`,
-    }
-  : {};
 
 const readIssue = () => {
   return axios(
@@ -78,15 +69,21 @@ const readIssue = () => {
       }
 
       console.log("title------", newTitle);
-      removeFolder(`${base}`);
 
-      fs.writeFileSync(
-        `${base}published/` + newTitle + `.md`,
-        item.body ? item.body : ""
-      );
-      sidebar.push({
-        text: newTitle,
-        link: `/published/${newTitle}`,
+      const writeFile = () => {
+        fs.writeFileSync(
+          `${base}published/` + newTitle + `.md`,
+          item.body ? item.body : ""
+        );
+        sidebar.push({
+          text: newTitle,
+          link: `/published/${newTitle}`,
+        });
+      };
+
+      // 删除之前文件夹
+      rimraf(base, function async(err) {
+        return err ? console.log(err) : writeFile();
       });
     });
   });

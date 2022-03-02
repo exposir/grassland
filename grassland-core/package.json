@@ -1,6 +1,6 @@
 {
   "name": "grassland-core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,6 +9,7 @@
   "devDependencies": {},
   "dependencies": {
     "axios": "^0.26.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "rimraf": "^3.0.2"
   }
 }
